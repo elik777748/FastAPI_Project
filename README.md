@@ -9,4 +9,4 @@
 docker compose up  --build
 docker compose up
 
-http://localhost:19999/
+http://localhost:19999/docs
