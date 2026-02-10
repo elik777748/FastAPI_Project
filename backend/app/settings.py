@@ -10,7 +10,7 @@ class DataBaseSettings(BaseSettings):
 
     @property
     def DATABASE_URL(self) -> str:
-        return f"postgresql://neondb_owner://{self.PGUSER}:{self.PGPASSWORD}@{self.PGHOST}:{self.PGPORT}/{self.PGDATABASE}"
+        return (f'postgresql+asyncpg://{self.PGUSER}:{self.PGPASSWORD}@{self.PGHOST}:{self.PGPORT}/{self.PGDATABASE}')
 
 class Settings(DataBaseSettings):
     DEBUG: bool = False
