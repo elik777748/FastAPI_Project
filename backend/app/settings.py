@@ -1,7 +1,7 @@
 from pydantic_settings import BaseSettings
 
 
-class DataBaseSettings(BaseSettings):
+class DatabaseSettings(BaseSettings):
     PGHOST: str
     PGDATABASE: str
     PGUSER: str
@@ -12,7 +12,13 @@ class DataBaseSettings(BaseSettings):
     def DATABASE_URL(self) -> str:
         return (f'postgresql+asyncpg://{self.PGUSER}:{self.PGPASSWORD}@{self.PGHOST}:{self.PGPORT}/{self.PGDATABASE}')
 
-class Settings(DataBaseSettings):
+
+class JWT(BaseSettings):
+    JWT_SECRET: str
+    JWT_ALGORITHM: str
+
+
+class Settings(DatabaseSettings, JWT):
     DEBUG: bool = False
 
 
