@@ -1,9 +1,16 @@
-<a 
-type="button" 
-class="btn btn-dark"
-href="{{ url_for('user_register') }}">
+{% if user %}
 
-
-sing-up
-
-</a>
+    <a
+            type="button"        class="btn btn-red"        href="{{ url_for('logout') }}">
+        {{ user.name }}, ви можете розлогуватися
+    </a>
+{% else %}
+    <a
+            type="button"        class="btn btn-dark"        href="{{ url_for('user_register') }}">
+        Зареєструватися
+    </a>
+    <a
+            type="button"        class="btn btn-dark"        href="{{ url_for('login') }}">
+        Логін
+    </a>
+{% endif %}
