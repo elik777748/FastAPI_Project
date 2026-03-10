@@ -1,16 +1,16 @@
 {% if user %}
 
     <a
-            type="button"        class="btn btn-red"        href="{{ url_for('logout') }}">
+            type="button"        class="btn btn-primary"        href="{{ url_for('logout') }}">
         {{ user.name }}, ви можете розлогуватися
     </a>
 {% else %}
     <a
-            type="button"        class="btn btn-dark"        href="{{ url_for('user_register') }}">
+            type="button"        class="btn btn-primary"        href="{{ url_for('user_register') }}">
         Зареєструватися
     </a>
     <a
-            type="button"        class="btn btn-dark"        href="{{ url_for('login') }}">
+            type="button"        class="btn btn-primary"        href="{{ url_for('login') }}">
         Логін
     </a>
 {% endif %}
