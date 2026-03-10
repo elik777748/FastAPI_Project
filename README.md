@@ -20,3 +20,4 @@ http://localhost:20000/docs
 ╰─ alembic upgrade head
 - inside docker container
 ╰─ alembic downgrade -1
+alembic revision --autogenerate -m 'products'
