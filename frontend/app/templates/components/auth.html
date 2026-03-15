@@ -2,7 +2,7 @@
 
     <a
             type="button"        class="btn btn-primary"        href="{{ url_for('logout') }}">
-        {{ user.name }}, ви можете розлогуватися
+        Вийти
     </a>
 {% else %}
     <a
@@ -10,7 +10,7 @@
         Зареєструватися
     </a>
     <a
-            type="button"        class="btn btn-primary"        href="{{ url_for('login') }}">
+            type="button"        class="btn btn-primary  ms-2"        href="{{ url_for('login') }}">
         Логін
     </a>
 {% endif %}

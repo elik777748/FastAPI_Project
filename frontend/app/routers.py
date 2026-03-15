@@ -93,7 +93,7 @@ async def user_register(requests: Request, user: dict = Depends(get_user), usern
                     'username': email,
                 }
                 response_login = await client_login.post('http://backend:8000/users/login', data=json_data, headers=headers)
-            redirect_response.set_cookie('access_token', response_login.json()['access_token'], max_age=15*60)
+            redirect_response.set_cookie('access_token', response_login.json()['access_token'], max_age=3 * 24 * 60 * 60)
             return redirect_response
         elif response.status_code == status.HTTP_409_CONFLICT:
             context['username'] = username

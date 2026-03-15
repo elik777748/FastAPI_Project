@@ -10,7 +10,7 @@ docker compose up  --build
 docker compose up
 
 http://localhost:19999/docs
-http://localhost:20000/docs
+http://localhost:20000
 
 -    ~/Desktop/group11112025Project/backend/app    libs !4 ···· ✔  backend   3.12    19:31:58  
 ╰─ uv run alembic init migrations

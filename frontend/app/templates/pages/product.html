@@ -2,11 +2,134 @@
 
 {% block content %}
 
+<div class="container mt-4">
+  <div class="row g-4">
+<div class="col-md-5">
 
-<div class="container-fluid row row-cols-1 row-cols-md-4 g-4">
+<div id="productCarousel" class="carousel slide">
 
-{{ product }}
+<div class="carousel-inner">
 
+{% if product.images %}
+
+{% for img in product.images %}
+
+<div class="carousel-item {% if loop.first %}active{% endif %}">
+<img src="{{ img }}" class="d-block w-100 product-image">
+</div>
+
+{% endfor %}
+
+{% elif product.image %}
+
+<div class="carousel-item active">
+<img src="{{ product.image }}" class="d-block w-100 product-image">
+</div>
+
+{% endif %}
 
 </div>
+
+<button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
+<span class="carousel-control-prev-icon"></span>
+</button>
+
+<button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+<span class="carousel-control-next-icon"></span>
+</button>
+
+</div>
+
+</div>
+
+    <div class="col-md-7">
+      <div class="product-card p-4">
+        <h1 class="product-title">{{ product.title or product.name or product.get('name') or 'Товар' }}</h1>
+        {% if product.sku %}
+          <div class="product-specs">SKU: {{ product.sku }}</div>
+        {% endif %}
+        {% if product.manufacturer %}
+          <div class="product-specs">Виробник: {{ product.manufacturer }}</div>
+        {% endif %}
+
+        <div class="mt-3">
+          <span class="price">
+            {% if product.price is defined and product.price != None %}
+              {{ product.price }} {{ product.currency or '' }}
+            {% else %}
+              Ціна не вказана
+            {% endif %}
+          </span>
+        </div>
+
+        <hr style="border-color:#2c2c31;margin:16px 0;">
+
+        <div class="product-description" style="color:#cfcfcf;">
+          {% if product.description %}
+            {{ product.description }}
+          {% else %}
+            <em>Опис відсутній.</em>
+          {% endif %}
+        </div>
+
+        <div class="mt-4">
+          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#buyModal">
+Придбати
+</button>
+          <a href="{{ url_for('index') }}" class="btn btn-outline-secondary ms-2">Назад до каталогу</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="buyModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+  
+    <div class="modal-content bg-dark text-light">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Покупка товару</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body text-center">
+
+        <p>Поки що покупка недоступна 😄</p>
+
+        <div class="ratio ratio-16x9">
+<iframe 
+  id="rickrollVideo"
+  data-src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" 
+  title="Rickroll" 
+  allow="autoplay; encrypted-media" 
+  allowfullscreen>
+</iframe>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const myModalEl = document.getElementById('buyModal');
+    const video = document.getElementById('rickrollVideo');
+
+    if (myModalEl && video) {
+        // Подія спрацьовує, коли модалка ВЖЕ показана користувачу
+        myModalEl.addEventListener('shown.bs.modal', function () {
+            const videoSrc = video.getAttribute('data-src');
+            video.setAttribute('src', videoSrc);
+        });
+
+        // Подія спрацьовує, коли модалка ПОЧИНАЄ закриватися
+        myModalEl.addEventListener('hide.bs.modal', function () {
+            video.setAttribute('src', '');
+        });
+    }
+});
+</script>
 {% endblock %}
