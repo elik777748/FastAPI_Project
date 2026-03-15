@@ -4,7 +4,7 @@
 
 <div class="m-4 container-sm">
 
-<h2>Логін користувача</h2>
+  <h2>Вхід у систему</h2>
 
   {% if error %}
     <div class="alert alert-danger" role="alert">
@@ -15,16 +15,16 @@
   <form method="post" action="{{ url_for('login') }}">
 
     <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">Email address</label>
-      <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required value="{{ email }}">
-    </div>
+      <label for="exampleInputEmail1" class="form-label">Електронна пошта</label>
+      <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required value="{{ email }}" placeholder="наприклад: user@example.com">
+      </div>
 
     <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label">Password</label>
-      <input name="password" type="password" class="form-control" id="exampleInputPassword1" required>
+      <label for="exampleInputPassword1" class="form-label">Пароль</label>
+      <input name="password" type="password" class="form-control" id="exampleInputPassword1" required placeholder="Ваш пароль">
     </div>
 
-    <button type="submit" class="btn btn-primary">Логін</button>
+    <button type="submit" class="btn btn-primary">Увійти</button>
   </form>
 
 </div>

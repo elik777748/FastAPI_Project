@@ -12,7 +12,7 @@
     <h5 class="card-title">{{ product.title }}</h5>
     <p class="card-text">{{ product.description|truncate(30, true) }}</p>
     <p class="card-text">{{ product.price}} грн</p>
-    <a href="{{ url_for('product_detail', product_uuid=product.uuid_id) }}" class="btn btn-primary">Details</a>
+    <a href="{{ url_for('product_detail', product_uuid=product.uuid_id) }}" class="btn btn-primary">Деталі</a>
   </div>
 </div>
 {% endfor %}

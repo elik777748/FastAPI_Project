@@ -1,0 +1,294 @@
+<style>
+    .calc-wrapper {
+        background: #1a1a1d;
+        color: #e5e5e5;
+        padding: 25px;
+        border-radius: 10px;
+        border: 1px solid #2c2c31;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .calc-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+    }
+
+    @media (max-width: 768px) {
+        .calc-grid { grid-template-columns: 1fr; }
+    }
+
+    .calc-section h3 {
+        color: #ffffff;
+        font-size: 18px;
+        margin-bottom: 20px;
+        border-left: 3px solid #444;
+        padding-left: 10px;
+    }
+
+    .calc-group {
+        margin-bottom: 15px;
+    }
+
+    .calc-group label {
+        display: block;
+        font-size: 13px;
+        color: #9f9f9f;
+        margin-bottom: 5px;
+    }
+
+    .calc-select, .calc-input {
+        width: 100%;
+        padding: 10px;
+        background: #0f0f10 !important;
+        border: 1px solid #333 !important;
+        color: #fff !important;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+
+    .calc-select:focus, .calc-input:focus {
+        border-color: #555 !important;
+        outline: none;
+    }
+
+    .calc-btn {
+        width: 100%;
+        padding: 12px;
+        margin-top: 10px;
+        background: #2f2f35;
+        border: 1px solid #444;
+        color: white;
+        border-radius: 6px;
+        transition: 0.2s;
+        cursor: pointer;
+    }
+
+    .calc-btn:hover {
+        background: #3a3a40;
+        border-color: #666;
+    }
+
+    .calc-result {
+        margin-top: 20px;
+        padding: 15px;
+        background: #0d0d0e;
+        border-radius: 6px;
+        text-align: center;
+        font-weight: bold;
+        color: #fff;
+        min-height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px dashed #444;
+    }
+
+    .band-display {
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 4px;
+        margin: 0 2px;
+        font-size: 12px;
+        border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .calc-table {
+        width: 100%;
+        margin-top: 30px;
+        border-collapse: collapse;
+        font-size: 13px;
+    }
+
+    .calc-table th, .calc-table td {
+        padding: 10px;
+        border: 1px solid #2c2c31;
+        text-align: center;
+    }
+
+    .calc-table th { background: #222226; color: #fff; }
+</style>
+
+<div class="calc-wrapper">
+    <div class="calc-grid">
+        <div class="calc-section">
+            <h3>Кольори → Опір (4 смуги)</h3>
+            
+            <div class="calc-group">
+                <label>1-ша смуга (цифра)</label>
+                <select id="b1" class="calc-select" onchange="updateUI(this)">
+                    <option value="0" style="background:black;color:white">Чорний (0)</option>
+                    <option value="1" style="background:brown;color:white" selected>Коричневий (1)</option>
+                    <option value="2" style="background:red;color:white">Червоний (2)</option>
+                    <option value="3" style="background:orange;color:white">Помаранчевий (3)</option>
+                    <option value="4" style="background:yellow;color:black">Жовтий (4)</option>
+                    <option value="5" style="background:green;color:white">Зелений (5)</option>
+                    <option value="6" style="background:blue;color:white">Синій (6)</option>
+                    <option value="7" style="background:violet;color:white">Фіолетовий (7)</option>
+                    <option value="8" style="background:grey;color:white">Сірий (8)</option>
+                    <option value="9" style="background:white;color:black">Білий (9)</option>
+                </select>
+            </div>
+
+            <div class="calc-group">
+                <label>2-га смуга (цифра)</label>
+                <select id="b2" class="calc-select" onchange="updateUI(this)">
+                    <option value="0" style="background:black;color:white">Чорний (0)</option>
+                    <option value="1" style="background:brown;color:white">Коричневий (1)</option>
+                    <option value="2" style="background:red;color:white">Червоний (2)</option>
+                    <option value="3" style="background:orange;color:white">Помаранчевий (3)</option>
+                    <option value="4" style="background:yellow;color:black">Жовтий (4)</option>
+                    <option value="5" style="background:green;color:white">Зелений (5)</option>
+                    <option value="6" style="background:blue;color:white">Синій (6)</option>
+                    <option value="7" style="background:violet;color:white">Фіолетовий (7)</option>
+                    <option value="8" style="background:grey;color:white">Сірий (8)</option>
+                    <option value="9" style="background:white;color:black">Білий (9)</option>
+                </select>
+            </div>
+
+            <div class="calc-group">
+                <label>3-тя смуга (множник)</label>
+                <select id="bm" class="calc-select" onchange="updateUI(this)">
+                    <option value="1" style="background:black;color:white">x1 (Чорний)</option>
+                    <option value="10" style="background:brown;color:white">x10 (Кор.)</option>
+                    <option value="100" style="background:red;color:white">x100 (Черв.)</option>
+                    <option value="1000" style="background:orange;color:white">x1k (Пом.)</option>
+                    <option value="10000" style="background:yellow;color:black">x10k (Жов.)</option>
+                    <option value="100000" style="background:green;color:white">x100k (Зел.)</option>
+                    <option value="1000000" style="background:blue;color:white">x1M (Син.)</option>
+                    <option value="0.1" style="background:gold;color:black">x0.1 (Зол.)</option>
+                    <option value="0.01" style="background:silver;color:black">x0.01 (Сріб.)</option>
+                </select>
+            </div>
+
+            <div class="calc-group">
+                <label>4-та смуга (допуск)</label>
+                <select id="bt" class="calc-select" onchange="updateUI(this)">
+                    <option value="5" style="background:gold;color:black">±5% (Золотий)</option>
+                    <option value="10" style="background:silver;color:black">±10% (Срібний)</option>
+                    <option value="1" style="background:brown;color:white">±1% (Кор.)</option>
+                    <option value="2" style="background:red;color:white">±2% (Черв.)</option>
+                </select>
+            </div>
+
+            <button class="calc-btn" onclick="calcRes()">Розрахувати</button>
+            <div id="res1" class="calc-result">Тут буде результат</div>
+        </div>
+
+        <div class="calc-section">
+            <h3>Опір → Кольори</h3>
+            
+            <div class="calc-group">
+                <label>Значення опору</label>
+                <input type="number" id="valInput" class="calc-input" placeholder="Напр: 220">
+            </div>
+
+            <div class="calc-group">
+                <label>Одиниці</label>
+                <select id="unitInput" class="calc-select">
+                    <option value="1">Ом (Ω)</option>
+                    <option value="1000">кОм (kΩ)</option>
+                    <option value="1000000">МОм (MΩ)</option>
+                </select>
+            </div>
+
+            <div class="calc-group">
+                <label>Допуск (%)</label>
+                <select id="tolInput" class="calc-select">
+                    <option value="5">5% (Золотий)</option>
+                    <option value="10">10% (Срібний)</option>
+                    <option value="1">1% (Коричневий)</option>
+                </select>
+            </div>
+
+            <button class="calc-btn" onclick="calcBands()">Визначити кольори</button>
+            <div id="res2" class="calc-result">Тут будуть кольори</div>
+        </div>
+    </div>
+
+    <table class="calc-table">
+        <thead>
+            <tr>
+                <th>Колір</th>
+                <th>Цифра</th>
+                <th>Множник</th>
+                <th>Допуск</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>Чорний</td><td>0</td><td>x1</td><td>-</td></tr>
+            <tr><td>Коричневий</td><td>1</td><td>x10</td><td>±1%</td></tr>
+            <tr><td>Червоний</td><td>2</td><td>x100</td><td>±2%</td></tr>
+            <tr><td>Золотий</td><td>-</td><td>x0.1</td><td>±5%</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<script>
+    const COLORS = ['Чорний', 'Коричневий', 'Червоний', 'Помаранчевий', 'Жовтий', 'Зелений', 'Синій', 'Фіолетовий', 'Сірий', 'Білий'];
+    const HEX = {
+        'Чорний': '#000', 'Коричневий': '#8B4513', 'Червоний': '#FF0000', 'Помаранчевий': '#FF8C00',
+        'Жовтий': '#FFFF00', 'Зелений': '#008000', 'Синій': '#0000FF', 'Фіолетовий': '#EE82EE',
+        'Сірий': '#808080', 'Білий': '#FFF', 'Золотий': '#FFD700', 'Срібний': '#C0C0C0'
+    };
+
+    function updateUI(el) {
+        const opt = el.options[el.selectedIndex];
+        el.style.backgroundColor = opt.style.backgroundColor;
+        el.style.color = opt.style.color;
+    }
+
+    function calcRes() {
+        const v1 = parseInt(document.getElementById('b1').value);
+        const v2 = parseInt(document.getElementById('b2').value);
+        const mult = parseFloat(document.getElementById('bm').value);
+        const tol = document.getElementById('bt').value;
+
+        let res = (v1 * 10 + v2) * mult;
+        let unit = "Ом";
+
+        if (res >= 1000000) { res /= 1000000; unit = "МОм"; }
+        else if (res >= 1000) { res /= 1000; unit = "кОм"; }
+
+        document.getElementById('res1').innerHTML = `Результат: ${res.toFixed(2).replace(/\.00$/, '')} ${unit} ±${tol}%`;
+    }
+
+    function calcBands() {
+        let val = parseFloat(document.getElementById('valInput').value) * parseFloat(document.getElementById('unitInput').value);
+        const tol = document.getElementById('tolInput').value;
+
+        if (!val || val <= 0) {
+            document.getElementById('res2').innerText = "Введіть коректне число";
+            return;
+        }
+        let exp = Math.floor(Math.log10(val / 10));
+        let base = Math.round(val / Math.pow(10, exp));
+        if (base >= 100) {
+            base /= 10;
+            exp += 1;
+        }
+
+        const d1 = Math.floor(base / 10);
+        const d2 = base % 10;
+        
+        const multMap = { '-2': 'Срібний', '-1': 'Золотий', '0': 'Чорний', '1': 'Коричневий', '2': 'Червоний', '3': 'Помаранчевий', '4': 'Жовтий', '5': 'Зелений', '6': 'Синій' };
+        const tolMap = { '5': 'Золотий', '10': 'Срібний', '1': 'Коричневий' };
+
+        const c1 = COLORS[d1];
+        const c2 = COLORS[d2];
+        const cm = multMap[exp.toString()] || 'Error';
+        const ct = tolMap[tol];
+
+        if (cm === 'Error') {
+            document.getElementById('res2').innerText = "Опір поза межами 4-х смуг";
+            return;
+        }
+
+        const makeTag = (c) => `<span class="band-display" style="background:${HEX[c]}; color:${(c=='Жовтий'||c=='Білий'||c=='Золотий'||c=='Срібний')?'#000':'#fff'}">${c}</span>`;
+
+        document.getElementById('res2').innerHTML = `${makeTag(c1)} ${makeTag(c2)} ${makeTag(cm)} ${makeTag(ct)}`;
+    }
+
+    document.querySelectorAll('.calc-select').forEach(updateUI);
+</script>
